@@ -12,3 +12,6 @@ __pycache__/
 
 # Local Claude Code settings
 .claude/settings.local.json
+
+# Docs site: assembled sources and rendered output (make docs)
+/build/

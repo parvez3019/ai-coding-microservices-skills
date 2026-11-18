@@ -1,4 +1,4 @@
-# Awesome Microservices Skills — Claude Code
+# Microservices Skills — Claude Code
 
 **Read and follow [PROJECT.md](PROJECT.md) before changing anything in this repository.**
 

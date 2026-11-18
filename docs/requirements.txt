@@ -1,0 +1,4 @@
+# Docs site toolchain. Install with `make docs-install` (creates .venv/).
+# [imaging] pulls in Pillow and CairoSVG for the social-card plugin, which runs only when CI=true.
+mkdocs==1.6.1
+mkdocs-material[imaging]==9.8.1

@@ -1,8 +1,8 @@
 {
-  "name": "awesome-microservices-skills",
+  "name": "ai-coding-microservices-skills",
   "version": "0.1.0",
   "interface": {
-    "displayName": "Awesome Microservices Skills"
+    "displayName": "Microservices Skills"
   },
   "plugins": [
     {

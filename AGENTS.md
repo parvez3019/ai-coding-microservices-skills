@@ -1,4 +1,4 @@
-# Awesome Microservices Skills — Cursor / Codex / other agents
+# Microservices Skills — Cursor / Codex / other agents
 
 **Read and follow [PROJECT.md](PROJECT.md) before changing anything in this repository.**
 

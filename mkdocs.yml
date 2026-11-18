@@ -1,0 +1,129 @@
+# Docs site for Microservices Skills — https://parvez3019.github.io/ai-coding-microservices-skills/
+#
+# docs_dir is ASSEMBLED, not hand-written: `make docs` runs tools/build-docs.sh, which copies
+# docs/, every source/*/<skill>/SKILL.md, sample/ and friends into build/site-src/ and rewrites
+# their links. Edit the originals; never edit build/.
+
+site_name: Microservices Skills
+site_description: >-
+  Composable AI coding skills for Claude Code, Cursor and Codex that hold an assistant to
+  microservices engineering standards — service boundaries, API contracts, resilience, security,
+  and testing.
+site_url: https://parvez3019.github.io/ai-coding-microservices-skills/
+site_author: Parvez Hassan
+repo_url: https://github.com/parvez3019/ai-coding-microservices-skills
+repo_name: parvez3019/ai-coding-microservices-skills
+edit_uri: ""  # pages are assembled from several source folders, so a single edit path would lie
+copyright: MIT licensed
+
+docs_dir: build/site-src
+site_dir: build/site
+
+theme:
+  name: material
+  icon:
+    logo: material/hexagon-multiple-outline
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.instant
+    - navigation.top
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+
+plugins:
+  - search
+  # Per-page OpenGraph/Twitter cards for link previews. Needs the Cairo system library, which
+  # GitHub's ubuntu runners have; off locally unless you export CI=true.
+  - social:
+      enabled: !ENV [CI, false]
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/parvez3019/ai-coding-microservices-skills
+
+# Every skill under source/ must appear here — tools/build_docs.py fails the build otherwise.
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - How It Works: how-it-works.md
+  - Skills:
+      - skills/index.md
+      - Principles:
+          - skills/service-boundaries/index.md
+          - skills/clean-architecture/index.md
+          - skills/domain-modelling/index.md
+          - skills/data-access/index.md
+          - skills/cqrs-and-consistency/index.md
+          - skills/api-contracts/index.md
+          - skills/api-protocols/index.md
+          - skills/infrastructure-adapters/index.md
+          - skills/resilience-patterns/index.md
+          - skills/idempotency-and-immutability/index.md
+          - skills/secure-service/index.md
+          - skills/test-strategy/index.md
+          - skills/contract-testing/index.md
+          - skills/config-and-dependencies/index.md
+          - skills/design-first/index.md
+          - skills/collaborative-judgment/index.md
+      - Workflows:
+          - skills/design-service/index.md
+          - skills/implement-service/index.md
+          - skills/review-service/index.md
+          - skills/refactor-safely/index.md
+      - Profiles:
+          - skills/stack-profile/index.md
+      - Reviewer subagent: agents/microservice-reviewer.md
+      - Catalogue: catalogue.md
+  - Worked Example:
+      - sample/index.md
+      - Stack profile: sample/stack.md
+      - Approved blueprint: sample/order-cancellation.md
+  - Reference:
+      - Configuration: configuration.md
+      - Repository Structure: repository-structure.md
+      - Publishing: publishing.md
+      - Contributing: contributing.md
+      - Changelog: changelog.md
