@@ -10,6 +10,7 @@
   "homepage": "https://parvez3019.github.io/ai-coding-microservices-skills/",
   "repository": "https://github.com/parvez3019/ai-coding-microservices-skills",
   "license": "MIT",
+  "logo": "assets/icon.png",
   "keywords": [
     "microservices",
     "ddd",
