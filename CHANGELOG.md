@@ -7,6 +7,8 @@ renaming or removing a skill, or changing a `config.yaml` key, is a **major** ch
 
 ## [Unreleased]
 
+## [0.1.1] — 2026-11-18
+
 ### Changed
 
 - **Marketplace renamed** to `ai-coding-microservices-skills` to match the repository. Reinstall
@@ -19,6 +21,8 @@ renaming or removing a skill, or changing a `config.yaml` key, is a **major** ch
 - Documentation site (MkDocs Material, GitHub Pages) with one page per skill, assembled from
   `source/` by `tools/build-docs.sh`; `make docs`, `make docs-serve`, `make docs-install`.
 - `.github/workflows/docs.yml` — strict docs build on PRs, deploy to Pages on `main`.
+- `.github/workflows/release.yml` — pushing a `vX.Y.Z` tag publishes a GitHub release with that
+  version's CHANGELOG section as notes.
 
 ## [0.1.0] — 2026-09-05
 
@@ -78,5 +82,6 @@ Claude Code, Cursor, Codex, and any Agent-Plugins-conformant host.
   cross-reference resolution, size limits, and manifest version agreement
 - CI validates, rebuilds, and fails on any drift in `skills/`
 
-[Unreleased]: https://github.com/parvez3019/ai-coding-microservices-skills/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/parvez3019/ai-coding-microservices-skills/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/parvez3019/ai-coding-microservices-skills/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/parvez3019/ai-coding-microservices-skills/releases/tag/v0.1.0

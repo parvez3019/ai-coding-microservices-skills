@@ -1,7 +1,7 @@
 {
   "$schema": "https://code.claude.com/schemas/marketplace.json",
   "name": "ai-coding-microservices-skills",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A marketplace of composable, importable AI skills for teams building microservices — principles that guard each pull request and workflows that run design, implementation, refactoring, and review end to end.",
   "owner": {
     "name": "Parvez Hassan",
@@ -12,7 +12,7 @@
       "name": "microservices-skills",
       "displayName": "Microservices Skills",
       "description": "Install once to get design-first facilitation, service boundaries, clean architecture and SOLID, DDD and CQRS, API contracts, resilience patterns, secure-service practices, the unit/component/contract test portfolio, and config and dependency hygiene — plus workflows that compose them.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "source": "./",
       "category": "development",
       "license": "MIT",
