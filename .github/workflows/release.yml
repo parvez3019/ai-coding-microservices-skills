@@ -1,0 +1,61 @@
+name: Release
+
+# Pushing a tag vX.Y.Z publishes a GitHub release whose notes are that version's CHANGELOG.md
+# section. The job refuses to publish when the tag disagrees with the manifest versions or when
+# CHANGELOG.md has no section for it, so a release can't go out half-prepared.
+
+on:
+  push:
+    tags: ["v[0-9]+.[0-9]+.[0-9]+"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run every check CI runs
+        run: make check
+
+      - name: Tag must match the manifest version
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          manifest="$(python3 -c 'import json; print(json.load(open(".claude-plugin/plugin.json"))["version"])')"
+          if [ "$tag" != "$manifest" ]; then
+            echo "::error::tag v$tag does not match manifest version $manifest — run 'make version V=$tag' first"
+            exit 1
+          fi
+
+      - name: Extract release notes from CHANGELOG.md
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          awk -v v="$version" '
+            $0 ~ "^## \\[" v "\\]" { found = 1; next }
+            found && /^## \[/       { exit }
+            found                    { print }
+          ' CHANGELOG.md > release-notes.md
+          if ! grep -q '[^[:space:]]' release-notes.md; then
+            echo "::error::CHANGELOG.md has no '## [$version]' section"
+            exit 1
+          fi
+          {
+            echo
+            echo "**Install or update in Claude Code:**"
+            echo '```'
+            echo "/plugin marketplace add parvez3019/ai-coding-microservices-skills"
+            echo "/plugin install microservices-skills@ai-coding-microservices-skills"
+            echo '```'
+            echo "Docs: https://parvez3019.github.io/ai-coding-microservices-skills/"
+          } >> release-notes.md
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --notes-file release-notes.md --verify-tag

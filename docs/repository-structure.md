@@ -31,14 +31,21 @@ ai-coding-microservices-skills/
 │   ├── build-skills.sh             source/ → skills/ (flattens the tiers)
 │   ├── install.sh <dir>            copies skills into any agent's skills folder
 │   ├── validate-skills.sh          the quality gate (wrapper)
-│   └── validate_skills.py          the actual checks
+│   ├── validate_skills.py          the actual checks
+│   ├── build-docs.sh               assembles the docs site source into build/site-src/ (wrapper)
+│   └── build_docs.py               the assembly and link rewriting
 │
 ├── docs/                       ✏️  Documentation for humans
 │   ├── how-it-works.md             the tier model and the mechanics
 │   ├── catalogue.md                every skill, and which sibling owns the adjacent concern
 │   ├── configuration.md            every .msskills/ file and config.yaml key
 │   ├── repository-structure.md     this file
-│   └── publishing.md               releasing to the Claude Code and Cursor marketplaces
+│   ├── publishing.md               releasing to the Claude Code and Cursor marketplaces
+│   ├── index.md, getting-started.md  docs-site landing and install pages
+│   └── requirements.txt            pinned MkDocs toolchain
+│
+├── mkdocs.yml                  ✏️  Docs site config and nav (every skill must be listed)
+├── build/                      🤖  GENERATED, gitignored — docs site source and output
 │
 ├── sample/                     ✏️  Worked example — the state the skills read and write
 │   ├── README.md

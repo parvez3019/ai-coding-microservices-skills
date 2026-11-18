@@ -2,7 +2,7 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "microservices-skills",
   "displayName": "Microservices Skills",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Composable AI skills for microservices — design-first facilitation, clean architecture, DDD, CQRS, API contracts, resilience, security, and the full test portfolio.",
   "author": {
     "name": "Parvez Hassan",

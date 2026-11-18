@@ -70,7 +70,8 @@ make check && make plugin-validate
 git commit -am "release: v0.2.0"
 git tag -a v0.2.0 -m "v0.2.0"
 git push origin main --tags
-gh release create v0.2.0 --notes-file <(sed -n '/## 0.2.0/,/## 0.1/p' CHANGELOG.md)
+# The tag push triggers .github/workflows/release.yml, which re-runs `make check`, verifies the
+# tag matches the manifests, and publishes the GitHub release from the CHANGELOG section.
 ```
 
 Existing installs pick the new version up on `/plugin marketplace update` — or automatically,
