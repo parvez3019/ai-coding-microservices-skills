@@ -8,7 +8,7 @@ How to release this plugin so people can install it, on Claude Code and Cursor. 
 
 **A marketplace is just a Git repository with a `marketplace.json` in it.** There is no upload, no
 review queue, and no registry account for the basic path. When someone runs
-`/plugin marketplace add parvez3019/awesome-microservices-skills`, their client clones this
+`/plugin marketplace add parvez3019/ai-coding-microservices-skills`, their client clones this
 repository and reads `.claude-plugin/marketplace.json`.
 
 That means **pushing to `main` publishes**. Everything below is about making that safe and
@@ -32,8 +32,8 @@ Then a real install test, from a **different directory** so you are not testing 
 
 ```bash
 cd /tmp && mkdir plugin-test && cd plugin-test
-claude plugin marketplace add ~/repos/awesome-microservices-skills
-claude plugin install microservices-skills@awesome-microservices-skills --yes
+claude plugin marketplace add ~/repos/ai-coding-microservices-skills
+claude plugin install microservices-skills@ai-coding-microservices-skills --yes
 ```
 
 Open a session there and check: the skills appear in `/` autocomplete under

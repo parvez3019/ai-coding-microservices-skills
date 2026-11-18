@@ -1,14 +1,14 @@
 {
   "name": "microservices-skills",
-  "displayName": "Awesome Microservices Skills",
+  "displayName": "Microservices Skills",
   "version": "0.1.0",
   "description": "Composable AI skills for microservices — design-first facilitation, clean architecture, domain modelling, data access, CQRS, API contracts and protocols, resilience, idempotency, security, and the full test portfolio.",
   "author": {
     "name": "Parvez Hassan",
     "url": "https://github.com/parvez3019"
   },
-  "homepage": "https://github.com/parvez3019/awesome-microservices-skills",
-  "repository": "https://github.com/parvez3019/awesome-microservices-skills",
+  "homepage": "https://parvez3019.github.io/ai-coding-microservices-skills/",
+  "repository": "https://github.com/parvez3019/ai-coding-microservices-skills",
   "license": "MIT",
   "skills": "../skills",
   "keywords": [

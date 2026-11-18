@@ -1,4 +1,4 @@
-# Awesome Microservices Skills
+# Microservices Skills
 #
 # Run `make` or `make help` for the target list.
 # Everything here wraps tools/ — the scripts remain the source of truth, so CI and
@@ -20,15 +20,18 @@ MANIFESTS := .claude-plugin/plugin.json \
 #   make install DEST=~/work/orders-service/.cursor/skills
 DEST ?= $(HOME)/.claude/skills
 
-SMOKE_DIR := $(shell mktemp -d 2>/dev/null || echo /tmp/ms-skills-smoke)
+# The docs toolchain: .venv/ from `make docs-install` if present, else whatever is on PATH (CI).
+MKDOCS := $(if $(wildcard .venv/bin/mkdocs),.venv/bin/mkdocs,mkdocs)
+
+SMOKE_DIR :=$(shell mktemp -d 2>/dev/null || echo /tmp/ms-skills-smoke)
 
 .PHONY: help build validate check drift manifests shellcheck smoke \
         install install-claude install-cursor plugin-validate \
-        version list clean
+        version list clean docs docs-install docs-serve
 
 ## help: show this list
 help:
-	@echo "Awesome Microservices Skills"
+	@echo "Microservices Skills"
 	@echo
 	@grep -E '^## ' $(MAKEFILE_LIST) | sed 's/^## /  make /' | column -t -s ':'
 	@echo
@@ -63,7 +66,7 @@ manifests:
 ## shellcheck: syntax-check the shell and python tooling
 shellcheck:
 	@bash -n tools/*.sh && echo "ok   shell syntax"
-	@python3 -m py_compile tools/validate_skills.py && echo "ok   python syntax"
+	@python3 -m py_compile tools/validate_skills.py tools/build_docs.py && echo "ok   python syntax"
 
 ## smoke: install into a temp dir and verify every skill arrived intact
 smoke:
@@ -76,6 +79,22 @@ smoke:
 	rm -rf "$(SMOKE_DIR)"; \
 	[ $$missing -eq 0 ] || exit 1; \
 	echo "ok   $$count skills installed, all with SKILL.md"
+
+## docs-install: create .venv/ with the pinned docs toolchain
+docs-install:
+	@python3 -m venv .venv
+	@.venv/bin/pip install -q -r docs/requirements.txt
+	@echo "ok   docs toolchain in .venv/"
+
+## docs: assemble and build the docs site into build/site (strict: broken links fail)
+docs:
+	@./tools/build-docs.sh
+	@$(MKDOCS) build --strict
+
+## docs-serve: live preview of the docs site at http://127.0.0.1:8000
+docs-serve:
+	@./tools/build-docs.sh
+	@$(MKDOCS) serve
 
 ## check: everything CI runs — do this before every commit
 check: shellcheck drift validate manifests smoke

@@ -9,8 +9,8 @@ validator enforces are in [PROJECT.md](PROJECT.md).
 ## Before you start
 
 ```bash
-git clone https://github.com/parvez3019/awesome-microservices-skills.git
-cd awesome-microservices-skills
+git clone https://github.com/parvez3019/ai-coding-microservices-skills.git
+cd ai-coding-microservices-skills
 make check     # should pass on a fresh clone
 make help      # every available target
 ```

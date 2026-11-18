@@ -1,10 +1,11 @@
-# Awesome Microservices Skills
+# Microservices Skills — AI coding skills for Claude Code, Cursor & Codex
 
 <p align="left">
   <strong>Composable AI skills that hold an assistant to microservices engineering standards —
   boundary-aware, failure-aware, contract-first.</strong>
 </p>
 
+[![Docs](https://img.shields.io/badge/docs-site-indigo.svg)](https://parvez3019.github.io/ai-coding-microservices-skills/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-plugin-blue.svg)](https://code.claude.com/docs/en/plugins)
 [![Cursor](https://img.shields.io/badge/Cursor-compatible-blue.svg)](https://cursor.com/docs/skills)
@@ -18,7 +19,23 @@ do not get a timeout, a circuit breaker, an idempotency key, an authorisation ch
 caller, or a test for the path where pricing times out. Nothing is wrong with the code — it is just
 missing everything that separates a demo from a service someone gets paged about.
 
-Awesome Microservices Skills fixes that with **21 composable skills in three tiers** that encode
+```diff
+  public Order place(PlaceOrder cmd, Caller caller) {
++     authz.requireCanOrderFor(caller, cmd.customerId());          // secure-service
++     return idempotency.once(cmd.idempotencyKey(), () -> {         // idempotency-and-immutability
+          Price price = pricing.quote(cmd.sku(), cmd.quantity());   // adapter now has a timeout,
+                                                                    // retry budget and breaker
+          return orders.save(Order.place(cmd, price));
++     });
+  }
++ // + component test: "pricing times out → 503, no order written" — test-strategy
+```
+
+**Install in Claude Code:**
+`claude plugin marketplace add parvez3019/ai-coding-microservices-skills && claude plugin install microservices-skills@ai-coding-microservices-skills --yes`
+— other hosts below. **Docs:** [parvez3019.github.io/ai-coding-microservices-skills](https://parvez3019.github.io/ai-coding-microservices-skills/)
+
+Microservices Skills fixes that with **21 composable skills in three tiers** that encode
 what "done" means in a distributed system: where boundaries fall, what crosses them, how it fails,
 who is allowed to call it, and which test proves it.
 
@@ -110,7 +127,7 @@ memory of having written the code.
 
 ## Getting Started
 
-**Install** — pick your host. Every option installs the same skills from the same
+1. **Install** — pick your host. Every option installs the same skills from the same
    [`skills/`](skills/) folder; the manifests are thin pointers, not copies.
 
 
@@ -118,14 +135,14 @@ memory of having written the code.
 
    In the chat:
    ```
-   /plugin marketplace add parvez3019/awesome-microservices-skills
-   /plugin install microservices-skills@awesome-microservices-skills
+   /plugin marketplace add parvez3019/ai-coding-microservices-skills
+   /plugin install microservices-skills@ai-coding-microservices-skills
    ```
 
    Or from the terminal, non-interactively:
    ```bash
-   claude plugin marketplace add parvez3019/awesome-microservices-skills
-   claude plugin install microservices-skills@awesome-microservices-skills --yes
+   claude plugin marketplace add parvez3019/ai-coding-microservices-skills
+   claude plugin install microservices-skills@ai-coding-microservices-skills --yes
    ```
 
    Verify with `claude plugin marketplace list`, then type `/` in a session — the skills appear as
@@ -140,14 +157,14 @@ memory of having written the code.
    [`plugin.json`](plugin.json) is discovered straight from the repository link — add it from
    **Cursor Settings → Customize → Plugins**, or point Cursor at:
    ```
-   https://github.com/parvez3019/awesome-microservices-skills
+   https://github.com/parvez3019/ai-coding-microservices-skills
    ```
 
    To vendor the skills into a project instead — the option most teams want, since the standards
    are then versioned and reviewed with the code:
    ```bash
-   git clone https://github.com/parvez3019/awesome-microservices-skills.git
-   cd awesome-microservices-skills
+   git clone https://github.com/parvez3019/ai-coding-microservices-skills.git
+   cd ai-coding-microservices-skills
    ./tools/install.sh /path/to/your-service/.cursor/skills
    ```
 
@@ -161,8 +178,8 @@ memory of having written the code.
    **Option C — Codex**
 
    ```bash
-   codex plugin marketplace add parvez3019/awesome-microservices-skills
-   codex plugin add microservices-skills@awesome-microservices-skills
+   codex plugin marketplace add parvez3019/ai-coding-microservices-skills
+   codex plugin add microservices-skills@ai-coding-microservices-skills
    codex plugin list | grep -i microservices
    ```
 
@@ -177,8 +194,8 @@ memory of having written the code.
    The skills are plain [Agent Skills](https://agentskills.io) markdown with the six portable
    frontmatter fields, so any conformant host can read them:
    ```bash
-   git clone https://github.com/parvez3019/awesome-microservices-skills.git
-   cd awesome-microservices-skills
+   git clone https://github.com/parvez3019/ai-coding-microservices-skills.git
+   cd ai-coding-microservices-skills
    ./tools/install.sh ~/.claude/skills                    # Claude Code, all projects
    ./tools/install.sh /absolute/path/to/that/tool/skills  # anything else
    ```
@@ -220,6 +237,8 @@ sections by heading and appends new ones; `mode: override` uses your document al
 
 ## Learn More
 
+- [Documentation site](https://parvez3019.github.io/ai-coding-microservices-skills/) — every skill
+  on its own page, searchable
 - [How It Works](docs/how-it-works.md) — the tier model, the fixed shape of a principle, Config
   Resolution, and why the checks are written as STOP-and-verify
 - [Repository Structure](docs/repository-structure.md) — what every folder is for, which are
@@ -236,8 +255,8 @@ sections by heading and appends new ones; `mode: override` uses your document al
 ## Contributing
 
 ```bash
-git clone https://github.com/parvez3019/awesome-microservices-skills.git
-cd awesome-microservices-skills
+git clone https://github.com/parvez3019/ai-coding-microservices-skills.git
+cd ai-coding-microservices-skills
 make help     # every target
 make check    # exactly what CI runs: build, drift, validate, manifests, install smoke test
 ```

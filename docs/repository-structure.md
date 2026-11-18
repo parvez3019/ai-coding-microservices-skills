@@ -7,7 +7,7 @@ What every folder is for, which ones are generated, and which ones you edit.
 ## The map
 
 ```
-awesome-microservices-skills/
+ai-coding-microservices-skills/
 │
 ├── source/                     ✏️  EDIT HERE — the authoring tree
 │   ├── principles/<name>/

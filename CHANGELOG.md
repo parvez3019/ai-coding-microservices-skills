@@ -7,6 +7,19 @@ renaming or removing a skill, or changing a `config.yaml` key, is a **major** ch
 
 ## [Unreleased]
 
+### Changed
+
+- **Marketplace renamed** to `ai-coding-microservices-skills` to match the repository. Reinstall
+  with `/plugin marketplace add parvez3019/ai-coding-microservices-skills`; the plugin name
+  `microservices-skills` is unchanged. Display name is now "Microservices Skills".
+- Manifest `homepage` fields point at the documentation site.
+
+### Added
+
+- Documentation site (MkDocs Material, GitHub Pages) with one page per skill, assembled from
+  `source/` by `tools/build-docs.sh`; `make docs`, `make docs-serve`, `make docs-install`.
+- `.github/workflows/docs.yml` — strict docs build on PRs, deploy to Pages on `main`.
+
 ## [0.1.0] — 2026-09-05
 
 First release. 21 skills across three tiers, with build tooling, a validator, CI, and manifests for
@@ -65,5 +78,5 @@ Claude Code, Cursor, Codex, and any Agent-Plugins-conformant host.
   cross-reference resolution, size limits, and manifest version agreement
 - CI validates, rebuilds, and fails on any drift in `skills/`
 
-[Unreleased]: https://github.com/parvez3019/awesome-microservices-skills/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/parvez3019/awesome-microservices-skills/releases/tag/v0.1.0
+[Unreleased]: https://github.com/parvez3019/ai-coding-microservices-skills/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/parvez3019/ai-coding-microservices-skills/releases/tag/v0.1.0
