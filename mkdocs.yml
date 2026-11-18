@@ -21,6 +21,7 @@ site_dir: build/site
 
 theme:
   name: material
+  custom_dir: overrides  # adds search-console verification tags; see overrides/main.html
   icon:
     logo: material/hexagon-multiple-outline
     repo: fontawesome/brands/github
@@ -80,6 +81,9 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 extra:
+  # Search-engine ownership tokens (public by design — they only prove control of the site).
+  google_site_verification: "fxHYijen_d4W46Y2YnUqH2-B4O1RXTfCUg9uEyMbPKw"
+  bing_site_verification: ""
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/parvez3019/ai-coding-microservices-skills
